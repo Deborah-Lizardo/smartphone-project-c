@@ -1,0 +1,28 @@
+# Build directories
+cmake-build-*/
+
+# CLion project files
+.idea/
+
+# CMake configuration files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+CMakeLists.txt.user
+
+# Log files
+*.log
+
+# Temporary system files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Backup files
+*~
+*.bak
+
+# OS-specific files
+.DS_Store
+Thumbs.db
