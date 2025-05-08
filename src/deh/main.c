@@ -20,17 +20,18 @@ int main() {
         return 1;
     }
     // struct variable to store the smartphones [size]
+    // struct name; new variable
     smartphone smartphones[MAX_SMARTPHONES];
     int smartphone_count = 0;
 
-    // Loop 1= Read all records from the file
+    // Loop 1 Read all records from the file
     while (fgets(smartphones[smartphone_count].brand, MAX_BRAND, file) != NULL && fgets(smartphones[smartphone_count].model, MAX_MODEL, file) != NULL) {
 
-        // 1) Read string data and remove newline
+        // 1) Read string data-fgets
         smartphones[smartphone_count].brand[strcspn(smartphones[smartphone_count].brand, "\n")] = '\0';
         smartphones[smartphone_count].model[strcspn(smartphones[smartphone_count].model, "\n")] = '\0';
 
-        // Read numeric data
+        // Read numeric data-fscanf
         fscanf(file, "%i", &smartphones[smartphone_count].year);
         fscanf(file, "%i", &smartphones[smartphone_count].memory_capacity);
         fscanf(file, "%f", &smartphones[smartphone_count].price);
@@ -59,8 +60,8 @@ int main() {
     // Temporary smartphone to be inserted
     smartphone temp_smartphone;
 
-    // Here you would typically read the data for the new smartphone into temp_smartphone.
-    // For this example, I'll assume the new smartphone is already filled with data manually.
+    // 3) read the data for the new smartphone into temp_smartphone
+    // example
     strcpy(temp_smartphone.brand, "NewBrand");
     strcpy(temp_smartphone.model, "NewModel");
     temp_smartphone.year = 2025;
