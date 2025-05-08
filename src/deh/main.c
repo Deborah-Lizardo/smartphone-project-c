@@ -19,34 +19,27 @@ int main() {
         printf("Error opening file");
         return 1;
     }
-    // struct variable to store the smartphones [size]
-    // struct name; new variable
+
     smartphone smartphones[MAX_SMARTPHONES];
     int smartphone_count = 0;
 
-    // Loop 1 Read all records from the file
+    // Loop to read all records from the file
     while (fgets(smartphones[smartphone_count].brand, MAX_BRAND, file) != NULL && fgets(smartphones[smartphone_count].model, MAX_MODEL, file) != NULL) {
-
         // 1) Read string data-fgets
         smartphones[smartphone_count].brand[strcspn(smartphones[smartphone_count].brand, "\n")] = '\0';
         smartphones[smartphone_count].model[strcspn(smartphones[smartphone_count].model, "\n")] = '\0';
-
         // Read numeric data-fscanf
         fscanf(file, "%i", &smartphones[smartphone_count].year);
         fscanf(file, "%i", &smartphones[smartphone_count].memory_capacity);
         fscanf(file, "%f", &smartphones[smartphone_count].price);
 
-        smartphone_count++;  // increment the counter to indicate the next position in the array
+        smartphone_count++; // increment the counter to indicate the next position in the array
 
         // Prevent reading past the limit
         if (smartphone_count >= MAX_SMARTPHONES) {
             break;
         }
-
-        // Consume the newline left by fscanf
-        fgetc(file);
     }
-
     // Display the smartphones read from the file
     for (int i = 0; i < smartphone_count; i++) {
         printf("Brand: %s\n", smartphones[i].brand);
@@ -59,22 +52,35 @@ int main() {
 
     // Temporary smartphone to be inserted
     smartphone temp_smartphone;
+    // Read the new smartphone data (this could be from user input or a new file line)
+    printf("Enter new smartphone data:\n");
+    printf("Brand: ");
+    fgets(temp_smartphone.brand, MAX_BRAND, stdin);
+    printf("Model: ");
+    fgets(temp_smartphone.model, MAX_MODEL, stdin);
+    printf("Year: ");
+    scanf("%d", &temp_smartphone.year);
+    printf("Memory (GB): ");
+    scanf("%d", &temp_smartphone.memory_capacity);
+    printf("Price: ");
+    scanf("%f", &temp_smartphone.price);
 
-    // 3) read the data for the new smartphone into temp_smartphone
-    // example
-    strcpy(temp_smartphone.brand, "NewBrand");
-    strcpy(temp_smartphone.model, "NewModel");
-    temp_smartphone.year = 2025;
-    temp_smartphone.memory_capacity = 128;
-    temp_smartphone.price = 1500.00;
+    // Remove the newline character that fgets() may leave behind
+    temp_smartphone.brand[strcspn(temp_smartphone.brand, "\n")] = '\0';
+    temp_smartphone.model[strcspn(temp_smartphone.model, "\n")] = '\0';
 
-    // Start from the last inserted smartphone in the array
-    for (int i = smartphone_count - 1; i >= 0 && smartphones[i].price > temp_smartphone.price; i--) {
-        smartphones[i + 1] = smartphones[i];  // Shift the smartphone to the right
+    // Insert the new smartphone in asked order by their price
+    if (smartphone_count < MAX_SMARTPHONES) {
+        int i;
+        // Start from the last inserted smartphone in the array
+        for (i = smartphone_count - 1; i >= 0 && smartphones[i].price > temp_smartphone.price; i--) {
+            smartphones[i + 1] = smartphones[i];  // Shift the smartphone to the right
+        }
+        smartphones[i + 1] = temp_smartphone;  // Insertion of the new smartphone at the correct position
+        smartphone_count++;  // Increment the count
+    } else {
+        printf("Error: Cannot add more smartphones, maximum limit reached.\n");
     }
-    // Insert the new smartphone at the correct position
-    smartphones[smartphone_count] = temp_smartphone;  // Insert the new smartphone
-    smartphone_count++;  // Increment the count of smartphones
 
     // Display the updated list
     printf("Updated list of smartphones:\n");
@@ -86,8 +92,6 @@ int main() {
         printf("Price: %.2f\n", smartphones[i].price);
         printf("\n");
     }
-
     fclose(file);
     return 0;
 }
-
