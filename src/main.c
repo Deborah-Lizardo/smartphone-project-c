@@ -121,25 +121,84 @@ void remover_por_memoria(smartphone lista[], int *quantidade, int memoria_min) {
 }
 
 // Fun��o para inserir um novo smartphone
+// Função segura para ler inteiros
+int ler_inteiro(const char *mensagem, int minimo, int maximo) {
+  int valor;
+  char buffer[100];
+  while (1) {
+    printf("%s", mensagem);
+    if (fgets(buffer, sizeof(buffer), stdin) != NULL &&
+        sscanf(buffer, "%d", &valor) == 1 &&
+        valor >= minimo && valor <= maximo) {
+      return valor;
+    } else {
+      printf("Entrada inválida. Tente novamente.\n");
+    }
+  }
+}
+
+// Função segura para ler float
+float ler_float(const char *mensagem, float minimo, float maximo) {
+  float valor;
+  char buffer[100];
+  while (1) {
+    printf("%s", mensagem);
+    if (fgets(buffer, sizeof(buffer), stdin) != NULL &&
+        sscanf(buffer, "%f", &valor) == 1 &&
+        valor >= minimo && valor <= maximo) {
+      return valor;
+    } else {
+      printf("Entrada inválida. Tente novamente.\n");
+    }
+  }
+}
+
+// Função segura para ler strings
+void ler_string(const char *mensagem, char *destino, int tamanho) {
+  printf("%s", mensagem);
+  fgets(destino, tamanho, stdin);
+  destino[strcspn(destino, "\r\n")] = '\0'; // Remove \n
+}
+
+int memoria_valida(int memoria) {
+  int opcoes_validas[] = {32, 64, 128, 256, 512, 1024, 2048};
+  int total_opcoes = sizeof(opcoes_validas) / sizeof(opcoes_validas[0]);
+  for (int i = 0; i < total_opcoes; i++) {
+    if (memoria == opcoes_validas[i]) {
+      return 1;
+    }
+  }
+  return 0;
+}
+
+int ler_memoria_valida(const char *mensagem) {
+  int memoria;
+  char buffer[100];
+  while (1) {
+    printf("%s", mensagem);
+    if (fgets(buffer, sizeof(buffer), stdin) != NULL &&
+        sscanf(buffer, "%d", &memoria) == 1 &&
+        memoria_valida(memoria)) {
+      return memoria;
+    } else {
+      printf("Memória inválida. Use apenas valores como 32, 64, 128, 256, 512, etc.\n");
+    }
+  }
+}
+
+// Função modificada para inserir smartphone com validação
 void inserir_novo_smartphone(smartphone lista[], int *quantidade) {
   smartphone novo;
-  printf("\nDigite a marca do smartphone: ");
-  fgets(novo.marca, MAX_MARCA, stdin);
-  novo.marca[strcspn(novo.marca, "\r\n")] = '\0';
 
-  printf("Digite o modelo do smartphone: ");
-  fgets(novo.modelo, MAX_MODELO, stdin);
-  novo.modelo[strcspn(novo.modelo, "\r\n")] = '\0';
+  ler_string("Digite a marca do smartphone: ", novo.marca, MAX_MARCA);
+  ler_string("Digite o modelo do smartphone: ", novo.modelo, MAX_MODELO);
 
-  printf("Digite o ano de fabricação: ");
-  scanf("%d", &novo.ano);
+  int ano_atual = 2025; // Atualize conforme necessário
+  novo.ano = ler_inteiro("Digite o ano de fabricação: ", 1990, ano_atual);
 
-  printf("Digite a capacidade de memória (GB): ");
-  scanf("%d", &novo.memoria);
+  novo.memoria = ler_memoria_valida("Digite a capacidade de memória (ex: 128, 256): ");
 
-  printf("Digite o preço: ");
-  scanf("%f", &novo.valor);
-  getchar(); // Limpa o buffer de entrada
+  novo.valor = ler_float("Digite o preço (positivo): ", 0.01, 100000.0);
 
   inserir_ordenado_por_preco(lista, quantidade, novo);
 }
@@ -147,7 +206,7 @@ void inserir_novo_smartphone(smartphone lista[], int *quantidade) {
 int main() {
 
   setlocale(LC_ALL, "");
-  FILE *arquivo = fopen("smartphones.txt", "r");
+  FILE *arquivo = fopen("data/smartphone.txt", "r");
   if (arquivo == NULL) {
     perror("Erro ao abrir o arquivo");
     return 1;
