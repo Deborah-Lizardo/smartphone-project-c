@@ -1,0 +1,201 @@
+40
+Apple
+iPhone 14
+2025
+128
+5500.00
+Apple
+iPhone 14 Pro
+2025
+256
+7500.00
+Apple
+iPhone 13 Mini
+2023
+128
+4200.00
+Apple
+iPhone SE 3
+2022
+64
+3200.00
+Apple
+iPhone 12
+2021
+64
+3000.00
+Apple
+iPhone 15
+2025
+512
+8500.00
+Apple
+iPhone XR
+2020
+64
+2500.00
+Apple
+iPhone 11
+2020
+128
+3500.00
+Apple
+iPhone 12 Pro
+2021
+256
+5000.00
+Apple
+iPhone 13 Pro Max
+2024
+512
+9000.00
+Samsung
+Galaxy S21
+2021
+128
+3500.00
+Samsung
+Galaxy S22
+2022
+128
+4000.00
+Samsung
+Galaxy S23
+2023
+256
+5000.00
+Samsung
+Galaxy A32
+2021
+64
+1800.00
+Samsung
+Galaxy A52
+2022
+128
+2200.00
+Samsung
+Galaxy A72
+2023
+256
+2800.00
+Samsung
+Galaxy Z Flip3
+2022
+128
+5500.00
+Samsung
+Galaxy Z Fold3
+2022
+256
+9000.00
+Samsung
+Galaxy M12
+2021
+64
+1400.00
+Samsung
+Galaxy M23
+2023
+128
+1900.00
+Motorola
+Moto G100
+2021
+128
+2200.00
+Motorola
+Moto G200
+2022
+256
+3000.00
+Motorola
+Moto G31
+2022
+64
+1200.00
+Motorola
+Edge 30
+2022
+128
+2800.00
+Motorola
+Edge 40
+2023
+256
+4000.00
+Motorola
+Moto E32
+2022
+64
+1000.00
+Motorola
+Moto E22
+2022
+32
+900.00
+Motorola
+Moto G82
+2022
+128
+2500.00
+Motorola
+Moto G73
+2023
+256
+2800.00
+Motorola
+Edge Plus
+2024
+512
+6000.00
+Xiaomi
+Redmi Note 11
+2022
+64
+1500.00
+Xiaomi
+Redmi Note 12
+2023
+128
+1800.00
+Xiaomi
+Mi 11
+2021
+128
+2500.00
+Xiaomi
+Mi 12
+2022
+256
+3500.00
+Xiaomi
+Poco X4 Pro
+2022
+128
+2000.00
+Xiaomi
+Poco F4
+2022
+256
+3000.00
+Xiaomi
+Xiaomi 12 Lite
+2022
+128
+2800.00
+Xiaomi
+Xiaomi 13
+2023
+256
+5000.00
+Xiaomi
+Redmi 10C
+2022
+64
+1200.00
+Xiaomi
+Xiaomi 14 Ultra
+2024
+512
+7000.00
