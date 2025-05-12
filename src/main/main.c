@@ -17,7 +17,6 @@ typedef struct {
 // Fun��o que insere um smartphone no vetor em ordem crescente de pre�o
 void inserir_ordenado_por_preco(smartphone lista[], int *quantidade, smartphone novo) {
     int i = *quantidade - 1;
-
     while (i >= 0 && lista[i].valor > novo.valor) {
         lista[i + 1] = lista[i];  // Desloca o elemento para a direita
         i--;
